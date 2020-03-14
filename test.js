@@ -4,7 +4,7 @@ let objectsToCrete = [
         position: {
             x: 2218.777, 
             y: 5598.235, 
-            z: 57.865
+            z: 53.25
         }
     },
     {
@@ -12,7 +12,7 @@ let objectsToCrete = [
         position: {
             x: 2220.777, 
             y: 5598.235, 
-            z: 57.865
+            z: 53.265
         }
     },
     {
@@ -20,7 +20,7 @@ let objectsToCrete = [
         position: {
             x: 2215.777, 
             y: 5598.235, 
-            z: 57.865
+            z: 53.265
         }
     }
 ];
