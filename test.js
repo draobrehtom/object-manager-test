@@ -1,41 +1,44 @@
-// let id;
+let objectsToCrete = [
+    {
+        model: 'prop_veg_crop_03_cab',
+        position: {
+            x: 2218.777, 
+            y: 5598.235, 
+            z: 57.865
+        }
+    },
+    {
+        model: 'ex_prop_adv_case_sm_03',
+        position: {
+            x: 2220.777, 
+            y: 5598.235, 
+            z: 57.865
+        }
+    },
+    {
+        model: 'ex_prop_adv_case_sm_03',
+        position: {
+            x: 2215.777, 
+            y: 5598.235, 
+            z: 57.865
+        }
+    }
+];
 
-// setInterval(() => {
-//     console.log(
-//         Object.keys(exports['vehicle-manager'].getVehicles()).length
-//     );
-    
-//     exports['vehicle-manager'].createVehicle("rebel", 2218.777, 5598.235, 53.865);
-// }, 500);
+let i = 0;
+RegisterCommand("co", () => {
+    let o = objectsToCrete[i];
+    let id = exports['object-manager'].createObject(o.model, o.position.x, o.position.y, o.position.z);
 
-on("vehicleDestroyed", (vehicle) => {
-    console.log("Vehicle " + vehicle.id + " is destroyed");
-});
+    console.log(id);
+    i++;
+    if (i > objectsToCrete.length - 1) {
+        i = 0;
+    }
+}, false)
 
-on("vehicleCreated", (vehicle) => {
-    console.log("Vehicle " + vehicle.id + " is created");
-    // exports['vehicle-manager'].deleteVehicle(vehicle.id);
-});
-
-// on("vehicleSpawned", (vehicle, playerId) => {
-//     console.log("Vehicle " + vehicle.id + " is spawned by player " + playerId);
-//     exports['vehicle-manager'].deleteVehicle(vehicle.id);
-// });
-
-on("playerEnterVehicle", (playerId, vehicle) => {
-    console.log("Player " + playerId + " enter vehicle " + vehicle.id);
-});
-
-on("playerExitVehicle", (playerId, vehicle) => {
-    console.log("Player " + playerId + " exit vehicle " + vehicle.id);
-});
-
-RegisterCommand('cv', (source, args) => {
-    let id = exports['vehicle-manager'].createVehicle(args[0], parseFloat(args[1]), parseFloat(args[2]), parseFloat(args[3]));
-    console.log('Vehicle id ' + id);
-}, false);
-
-
-RegisterCommand('dv', (source, args) => {
-    exports['vehicle-manager'].deleteVehicle(args[0]);
+RegisterCommand("do", (source, args) => {
+    for (let id in exports['object-manager'].getObjects()) {
+        exports['object-manager'].deleteObject(id);
+    }
 }, false);
